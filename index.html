@@ -22,48 +22,53 @@
         </select>
         <input type="text" id="occupation" placeholder="Occupation" required>
         <div class="ticks">
-            <span class="common" id="transport">Transport :
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                <label for="vehicle1"> bike</label>
+            <div class="common" id="transport">
+                <p>Transport </p>
+                <input type="checkbox" id="bike" name="transport" value="Bike">
+                <label for="bike">Bike</label>
 
-                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-                <label for="vehicle2"> car</label>
-            </span>
-            <span class="common" id="education">Education :
-                <input type="radio" id="Bachelors" class="pers-det" name="education" value="Bachelors">
-                <label for="Bachelors">Bachelors</label>
+                <input type="checkbox" id="car" name="transport" value="Car">
+                <label for="car">Car</label>
+            </div>
+            <div class="common" id="education">
+                <p>Education</p>
+                <input type="radio" id="bachelors" class="pers-det" name="education" value="Bachelors">
+                <label for="bachelors">Bachelors</label>
 
-                <input type="radio" id="Masters" class="pers-det" name="education" value="Masters">
-                <label for="Masters">Masters</label>
+                <input type="radio" id="masters" class="pers-det" name="education" value="Masters">
+                <label for="masters">Masters</label>
 
-                <input type="radio" id="PhD" class="pers-det" name="education" value="PhD">
-                <label for="PhD">PhD</label>
-            </span>
-        </div>
-        <br>
-        <br>
-        <button id="submit">Submit</button>
-    </div>
-    <div class="parent-popup">
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <span class="close" id="closePopup">&times;</span>
-                <h2>Details</h2>
-                <p><b>Name:</b> <span id="popupName"></span></p>
-                <p><b>Email:</b> <span id="popupEmail"></span></p>
-                <p><b>Phone:</b> <span id="popupPhone"></span></p>
-                <p><b>Address:</b> <span id="popupAddress"></span></p>
-                <p><b>Gender:</b> <span id="popupGender"></span></p>
-                <p><b>Occupation:</b> <span id="popupOccupation"></span></p>
-                <p><b>Transport:</b> <span id="popupTransport"></span></p>
-                <p><b>Education:</b> <span id="popupEducation"></span></p>
-
-                <button id="editBtn">Edit</button>
-                <button id="deleteBtn">Delete</button>
+                <input type="radio" id="phd" class="pers-det" name="education" value="PhD">
+                <label for="phd">PhD</label>
             </div>
         </div>
+
+        <button id="submit">Submit</button>
+
+        <div class="parent-popup">
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close" id="closePopup">&times;</span>
+                    <h2>Details</h2>
+                    <p><b>Name:</b> <span id="popupName"></span></p>
+                    <p><b>Email:</b> <span id="popupEmail"></span></p>
+                    <p><b>Phone:</b> <span id="popupPhone"></span></p>
+                    <p><b>Address:</b> <span id="popupAddress"></span></p>
+                    <p><b>Gender:</b> <span id="popupGender"></span></p>
+                    <p><b>Occupation:</b> <span id="popupOccupation"></span></p>
+                    <p><b>Transport:</b> <span id="popupTransport"></span></p>
+                    <p><b>Education:</b> <span id="popupEducation"></span></p>
+
+                    <button id="editBtn">Edit</button>
+                    <button id="deleteBtn">Delete</button>
+                </div>
+            </div>
+
+            <!-- Add a container for the popups -->
+            <div id="popup-container"></div>
+        </div>
+        <script src="script.js"></script>
     </div>
-    <script src="script.js"></script>
 </body>
 
 </html>

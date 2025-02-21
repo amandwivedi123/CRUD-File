@@ -7,14 +7,13 @@ body {
     rgba(56, 141, 225, 0.599),
     rgba(255, 0, 123, 0.472)
   );
-
-  height: 100%;
+  height: auto;
   width: 100%;
 }
 
 .container {
   width: 80%;
-  margin: auto;
+  margin-left: 120px;
   overflow: hidden;
 }
 
@@ -30,6 +29,7 @@ select {
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
+  outline: none;
 }
 
 button {
@@ -39,7 +39,7 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
 }
 
 button:hover {
@@ -65,60 +65,59 @@ button:hover {
 .ticks {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 12px;
+  /* margin-top: 12px; */
 }
 .common {
   font-family: Arial, sans-serif;
   font-weight: 200;
-  color: #190808a4;
+  color: #321818a4;
+}
+.common p {
+  font-weight: 700;
+}
+.common input {
+  width: 15px;
+  margin-left: 10px;
 }
 .popup {
   display: none;
-  /* position: fixed; */
-  transform: translate(-50%, -50%);
+  position: absolute;
+  /* transform: translate(-50%, -50%); */
   background-color: #fff;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin-left: 10rem;
+  margin-left: 4px;
   width: 300px;
-  transition: all 0.5 ease;
+  transition: all 1s ease-in-out;
+}
+
+#popup-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .popup-content {
   max-width: 300px;
-  margin: 0 auto;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.close:hover {
-  color: #666;
+  /* margin: 0 auto; */
 }
 
 .ticks {
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   display: flex;
+  gap: 10rem;
 }
 
-.ticks span {
+.ticks div {
   /* display: inline-block; */
-  margin-bottom: 10px;
-}
-
-.ticks input[type="radio"] {
-  margin-right: 5px;
-}
-
-.ticks label {
-  margin-right: 20px;
+  /* margin-bottom: 10px; */
+  display: flex;
+  width: 100%;
+  align-items: center;
 }
 
 .parent-popup {
