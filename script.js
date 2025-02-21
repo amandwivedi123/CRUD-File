@@ -159,7 +159,7 @@ function createNewPopup(dataObject) {
     newPopup.classList.add('popup');
     newPopup.style.display = 'block'; // Show the popup by default
     newPopup.innerHTML = `
-
+        
         <p>Name: <span id="popupName">${dataObject.name}</span></p>
         <p>Email: <span id="popupEmail">${dataObject.email}</span></p>
         <p>Phone: <span id="popupPhone">${dataObject.phone}</span></p>
@@ -168,9 +168,9 @@ function createNewPopup(dataObject) {
         <p>Occupation: <span id="popupOccupation">${dataObject.occupation}</span></p>
         <p>Transport: <span id="popupTransport"></span></p>
         <p>Education: <span id="popupEducation"></span></p>
-
-        <button id="editBtn">Edit</button>
-        <button id="deleteBtn">Delete</button>
+      
+        <button id="editBtn"><i class="fa-solid fa-pen-to-square"></i></button>
+        <button id="deleteBtn"><i class="fa-solid fa-trash"></i></button>
     `;
     popupContainer.appendChild(newPopup);
 
@@ -189,7 +189,7 @@ function createNewPopup(dataObject) {
     newDeleteBtn.addEventListener('click', () => {
         deleteData(dataObject);
         newPopup.style.display = 'none';
-    }); z
+    });
 
     // Display the transport and education values
     newPopupTransport.textContent = getSelectedTransport();
@@ -200,9 +200,6 @@ function createNewPopup(dataObject) {
     if (previousPopup) {
         newPopup.style.top = previousPopup.offsetTop + 'px';
         newPopup.style.left = (previousPopup.offsetLeft + previousPopup.offsetWidth) + 'px';
-    } else {
-        newPopup.style.top = '0px';
-        newPopup.style.left = '0px';
     }
 }
 
@@ -214,12 +211,3 @@ submitBtn.addEventListener('click', () => {
 });
 let submit = document.getElementById('submit')
 submit.addEventListener('click', displayValues);
-
-
-
-
-
-
-
-
-

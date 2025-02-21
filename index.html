@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Popup App</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -23,7 +26,7 @@
         <input type="text" id="occupation" placeholder="Occupation" required>
         <div class="ticks">
             <div class="common" id="transport">
-                <p>Transport </p>
+                <p>Transport :</p>
                 <input type="checkbox" id="bike" name="transport" value="Bike">
                 <label for="bike">Bike</label>
 
@@ -31,7 +34,7 @@
                 <label for="car">Car</label>
             </div>
             <div class="common" id="education">
-                <p>Education</p>
+                <p>Education :</p>
                 <input type="radio" id="bachelors" class="pers-det" name="education" value="Bachelors">
                 <label for="bachelors">Bachelors</label>
 
@@ -43,7 +46,7 @@
             </div>
         </div>
 
-        <button id="submit">Submit</button>
+        <button id="submit">Submit <i class="fa-solid fa-arrow-right"></i></button>
 
         <div class="parent-popup">
             <div id="popup" class="popup">
@@ -59,16 +62,18 @@
                     <p><b>Transport:</b> <span id="popupTransport"></span></p>
                     <p><b>Education:</b> <span id="popupEducation"></span></p>
 
-                    <button id="editBtn">Edit</button>
-                    <button id="deleteBtn">Delete</button>
+                    <button id="editBtn"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button id="deleteBtn"><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
 
-            <!-- Add a container for the popups -->
-            <div id="popup-container"></div>
+
         </div>
-        <script src="script.js"></script>
     </div>
+    <div class="popup-area">
+        <div id="popup-container"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

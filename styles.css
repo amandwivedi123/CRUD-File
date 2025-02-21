@@ -7,44 +7,56 @@ body {
     rgba(56, 141, 225, 0.599),
     rgba(255, 0, 123, 0.472)
   );
-  height: auto;
+
+  height: 100%;
   width: 100%;
 }
 
 .container {
   width: 80%;
   margin-left: 120px;
-  overflow: hidden;
 }
 
 h1 {
   text-align: center;
-  color: #333;
+  color: #363535;
 }
 
 input,
 select {
-  width: 100%;
+  width: 98%;
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #d3d1d1;
   border-radius: 4px;
   outline: none;
 }
 
-button {
+.container button {
   background-color: #5cb85c;
-  color: white;
+  color: rgb(19, 15, 15);
+  font-size: larger;
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 98%;
   /* margin-bottom: 5px; */
 }
 
+button {
+  background-color: #5cb85c;
+  color: rgb(9, 8, 8);
+  font-size: medium;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 button:hover {
   background-color: #2f632f;
   transition: all 0.25s ease;
+  color: white;
 }
 
 .close-btn {
@@ -52,14 +64,6 @@ button:hover {
   border: none;
   font-size: 20px;
   cursor: pointer;
-}
-
-.overlay {
-  display: none;
-  /* position: fixed; */
-  width: 50%;
-  height: 500%;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .ticks {
@@ -80,9 +84,8 @@ button:hover {
   margin-left: 10px;
 }
 .popup {
+  transition: all 1s ease-in-out;
   display: none;
-  position: absolute;
-  /* transform: translate(-50%, -50%); */
   background-color: #fff;
   padding: 20px;
   border: 1px solid #ddd;
@@ -94,35 +97,40 @@ button:hover {
 }
 
 #popup-container {
-  position: relative;
-  width: 100%;
-  height: 400px;
+  width: 100vw;
   display: flex;
+  gap: 10px;
   flex-wrap: wrap;
+  margin-left: 50px;
+  transition: all 1s ease-in-out;
 }
 
 .popup-content {
-  max-width: 300px;
-  /* margin: 0 auto; */
+  max-width: 200px;
+  transition: all 0.5s ease-in-out;
 }
 
 .ticks {
-  /* margin-bottom: 10px; */
   display: flex;
-  gap: 10rem;
 }
 
 .ticks div {
-  /* display: inline-block; */
-  /* margin-bottom: 10px; */
+  display: inline-block;
+  margin-bottom: 10px;
   display: flex;
   width: 100%;
   align-items: center;
 }
 
 .parent-popup {
-  margin-top: 10rem;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.popup-area {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
