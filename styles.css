@@ -27,9 +27,16 @@ select {
   width: 98%;
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #d3d1d1;
+  border: 1px solid #d3d1d163;
   border-radius: 4px;
   outline: none;
+  background-color: rgba(236, 242, 241, 0.66);
+}
+
+input:hover {
+  /* border: 0.5px solid #d3d1d1b3; */
+  box-shadow: 1px 2px 1px 1px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease-in;
 }
 
 .container button {
@@ -133,4 +140,123 @@ button:hover {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+}
+
+.searchSection {
+  display: flex;
+  width: 30%;
+  justify-self: end;
+  /* gap: 10px; */
+  align-items: center;
+}
+.searchSection input {
+  /* width: 400px; */
+  background-color: transparent;
+  border-radius: 10px;
+}
+.searchSection input:hover {
+  background-color: #f0f0f032;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 2px 2px 3px #888888;
+}
+
+#gender {
+  width: 100%;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.prev-btn,
+.next-btn {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+  background-color: #3e8e41;
+}
+
+.page-numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.page-number {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.page-number:hover {
+  background-color: #3e8e41;
+}
+
+.page-number.active {
+  background-color: #3e8e41;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #f7f7f7;
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: calc(25% - 20px);
+}
+
+.card h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+#pagination-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#pagination-container button {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#pagination-container button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+#pagination-container button:hover:not(:disabled) {
+  background-color: #ddd;
 }

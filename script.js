@@ -1,26 +1,309 @@
+// // Get elements
+// const nameInput = document.getElementById('name');
+// const emailInput = document.getElementById('email');
+// const phoneInput = document.getElementById('phone');
+// const addressInput = document.getElementById('address');
+// const genderSelect = document.getElementById('gender');
+// const occupationInput = document.getElementById('occupation');
+// const transportRadioButtons = document.querySelectorAll('input[name="transport"]');
+// const educationRadioButtons = document.querySelectorAll('input[name="education"]');
+// const submitBtn = document.getElementById('submit');
+// const popupContainer = document.getElementById('popup-container');
+// const searchInput = document.getElementById('search-input');
+// const searchBtn = document.getElementById('search-btn');
 
+// // Initialize data array
+// let data = [];
+
+// // Function to create data object
+// function createData() {
+//     const dataObject = {
+//         name: nameInput.value,
+//         email: emailInput.value,
+//         phone: phoneInput.value,
+//         address: addressInput.value,
+//         gender: genderSelect.value,
+//         occupation: occupationInput.value,
+//         transport: getSelectedTransport(),
+//         education: getSelectedEducation(),
+//     };
+//     return dataObject;
+// }
+
+// // Function to get selected transport value
+// function getSelectedTransport() {
+//     for (let i = 0; i < transportRadioButtons.length; i++) {
+//         if (transportRadioButtons[i].checked) {
+//             return transportRadioButtons[i].value;
+//         }
+//     }
+// }
+
+// // Function to get selected education value
+// function getSelectedEducation() {
+//     for (let i = 0; i < educationRadioButtons.length; i++) {
+//         if (educationRadioButtons[i].checked) {
+//             return educationRadioButtons[i].value;
+//         }
+//     }
+// }
+
+// // Function to create new popup
+// function createNewPopup(dataObject) {
+//     const newPopup = document.createElement('div');
+//     newPopup.classList.add('popup');
+//     newPopup.style.display = 'block';
+//     newPopup.innerHTML = `
+//         <p>Name: <span id="popupName">${dataObject.name}</span></p>
+//         <p>Email: <span id="popupEmail">${dataObject.email}</span></p>
+//         <p>Phone: <span id="popupPhone">${dataObject.phone}</span></p>
+//         <p>Address: <span id="popupAddress">${dataObject.address}</span></p>
+//         <p>Gender: <span id="popupGender">${dataObject.gender}</span></p>
+//         <p>Occupation: <span id="popupOccupation">${dataObject.occupation}</span></p>
+//         <p>Transport: <span id="popupTransport">${dataObject.transport}</span></p>
+//         <p>Education: <span id="popupEducation">${dataObject.education}</span></p>
+//         <button id="editBtn"><i class="fa-solid fa-pen-to-square"></i></button>
+//         <button id="deleteBtn"><i class="fa-solid fa-trash"></i></button>
+//     `;
+//     popupContainer.appendChild(newPopup);
+
+//     const newEditBtn = newPopup.querySelector('#editBtn');
+//     const newDeleteBtn = newPopup.querySelector('#deleteBtn');
+//     newDeleteBtn.addEventListener('click', () => {
+//         deleteData(dataObject);
+//         newPopup.style.display = 'none';
+//     });
+
+//     newEditBtn.addEventListener('click', () => {
+//         editPopup(dataObject);
+//     });
+// }
+
+// // Function to edit popup
+// function editPopup(dataObject) {
+//     // Populate input fields with data
+//     nameInput.value = dataObject.name;
+//     emailInput.value = dataObject.email;
+//     phoneInput.value = dataObject.phone;
+//     addressInput.value = dataObject.address;
+//     genderSelect.value = dataObject.gender;
+//     occupationInput.value = dataObject.occupation;
+
+//     // Check the corresponding transport radio button
+//     transportRadioButtons.forEach((radioButton) => {
+//         if (radioButton.value === dataObject.transport) {
+//             radioButton.checked = true;
+//         }
+//     });
+
+//     // Check the corresponding education radio button
+//     educationRadioButtons.forEach((radioButton) => {
+//         if (radioButton.value === dataObject.education) {
+//             radioButton.checked = true;
+//         }
+//     });
+
+//     // Scroll to the basic form
+//     const formContainer = document.querySelector('.container');
+//     formContainer.scrollIntoView({ behavior: 'smooth' });
+// }
+
+// // Function to delete data
+// function deleteData(dataObject) {
+//     const storedData = retrieveDataFromLocalStorage();
+//     const index = storedData.findIndex((data) => {
+//         return (
+//             data.name === dataObject.name &&
+//             data.email === dataObject.email &&
+//             data.phone === dataObject.phone &&
+//             data.address === dataObject.address &&
+//             data.gender === dataObject.gender &&
+//             data.occupation === dataObject.occupation
+//         );
+//     });
+//     if (index !== -1) {
+//         storedData.splice(index, 1);
+//         storeDataInLocalStorage(storedData);
+//     }
+// }
+
+// // Function to filter data
+// function filterData(searchTerm) {
+//     const filteredData = data.filter((dataObject) => {
+//         return (
+//             dataObject.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//             dataObject.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//             dataObject.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//             dataObject.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//             dataObject.gender.toLowerCase().includes(searchTerm.toLowerCase()) ||
+//             dataObject.occupation.toLowerCase().includes(searchTerm.toLowerCase())
+//         );
+//     });
+//     return filteredData;
+// }
+
+// // Function to display filtered data
+// function displayFilteredData(filteredData) {
+//     popupContainer.innerHTML = '';
+//     filteredData.forEach((dataObject) => {
+//         createNewPopup(dataObject);
+
+//     });
+// }
+
+// // Function to store data in local storage
+// function storeDataInLocalStorage(data) {
+//     localStorage.setItem('data', JSON.stringify(data));
+// }
+
+// // Function to retrieve data from local storage
+// function retrieveDataFromLocalStorage() {
+//     const storedData = localStorage.getItem('data');
+//     if (storedData) {
+//         return JSON.parse(storedData);
+//     } else {
+//         return [];
+//     }
+// }
+
+// // Function to clear input fields
+// function clearInputFields() {
+//     nameInput.value = '';
+//     emailInput.value = '';
+//     phoneInput.value = '';
+//     addressInput.value = '';
+//     genderSelect.value = '';
+//     occupationInput.value = '';
+//     transportRadioButtons.forEach((radioButton) => {
+//         radioButton.checked = false;
+//     });
+//     educationRadioButtons.forEach((radioButton) => {
+//         radioButton.checked = false;
+//     });
+// }
+
+// // Event listeners
+// submitBtn.addEventListener('click', () => {
+//     const dataObject = createData();
+//     data.push(dataObject);
+//     storeDataInLocalStorage(data);
+//     createNewPopup(dataObject);
+//     clearInputFields();
+// });
+
+
+
+// searchInput.addEventListener('keyup', () => {
+//     const searchTerm = searchInput.value.trim();
+//     if (searchTerm) {
+//         const filteredData = filterData(searchTerm);
+//         displayFilteredData(filteredData);
+//     } else {
+//         const storedData = retrieveDataFromLocalStorage();
+//         displayFilteredData(storedData);
+//     }
+// });
+
+// // Retrieve data from local storage when the page loads
+// const storedData = retrieveDataFromLocalStorage();
+// if (storedData.length > 0) {
+//     storedData.forEach((data) => {
+//         createNewPopup(data);
+//     });
+// }
+// // Function to display all popups
+// function displayAllPopups() {
+//     const storedData = retrieveDataFromLocalStorage();
+//     if (storedData.length > 0) {
+//         storedData.forEach((dataObject) => {
+//             createNewPopup(dataObject);
+//         });
+//     }
+// }
+
+// // Event listeners
+// window.addEventListener('load', () => {
+//     displayAllPopups();
+// });
+
+// // Function to delete data
+// function deleteData(dataObject) {
+//     const storedData = retrieveDataFromLocalStorage();
+//     const index = storedData.findIndex((data) => {
+//         return (
+//             data.name === dataObject.name &&
+//             data.email === dataObject.email &&
+//             data.phone === dataObject.phone &&
+//             data.address === dataObject.address &&
+//             data.gender === dataObject.gender &&
+//             data.occupation === dataObject.occupation
+//         );
+//     });
+//     if (index !== -1) {
+//         storedData.splice(index, 1);
+//         storeDataInLocalStorage(storedData);
+//         popupContainer.innerHTML = '';
+//         displayAllPopups();
+//     }
+// }
+
+// // // Function to display filtered popups
+// // function displayFilteredPopups(filteredData) {
+// //     popupContainer.innerHTML = '';
+// //     filteredData.forEach((dataObject) => {
+// //         createNewPopup(dataObject);
+// //     });
+// // }
+
+// // Event listeners
+// searchInput.addEventListener('input', () => {
+//     const searchTerm = searchInput.value.trim().toLowerCase();
+//     if (searchTerm) {
+//         const storedData = retrieveDataFromLocalStorage();
+//         const filteredData = storedData.filter((dataObject) => {
+//             if (dataObject) {
+//                 return (
+//                     dataObject.name?.toLowerCase().includes(searchTerm) ||
+//                     dataObject.email?.toLowerCase().includes(searchTerm) ||
+//                     dataObject.phone?.toLowerCase().includes(searchTerm) ||
+//                     dataObject.address?.toLowerCase().includes(searchTerm) ||
+//                     dataObject.gender?.toLowerCase().includes(searchTerm) ||
+//                     dataObject.occupation?.toLowerCase().includes(searchTerm) ||
+//                     dataObject.transport?.toLowerCase().includes(searchTerm) ||
+//                     dataObject.education?.toLowerCase().includes(searchTerm)
+//                 );
+//             } else {
+//                 return false;
+//             }
+//         });
+//         displayFilteredData(filteredData);
+//     } else {
+//         const storedData = retrieveDataFromLocalStorage();
+//         displayFilteredData(storedData);
+//     }
+// });
+
+
+
+
+
+// Get elements
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const phoneInput = document.getElementById('phone');
 const addressInput = document.getElementById('address');
 const genderSelect = document.getElementById('gender');
 const occupationInput = document.getElementById('occupation');
+const transportRadioButtons = document.querySelectorAll('input[name="transport"]');
+const educationRadioButtons = document.querySelectorAll('input[name="education"]');
 const submitBtn = document.getElementById('submit');
-const popup = document.getElementById('popup');
-const closePopupBtn = document.getElementById('closePopup');
-const editBtn = document.getElementById('editBtn');
-const deleteBtn = document.getElementById('deleteBtn');
+const popupContainer = document.getElementById('popup-container');
+const searchInput = document.getElementById('search-input');
 
-let transportRadioButtons = document.querySelectorAll('input[name="transport"]');
-console.log(transportRadioButtons)
-
-let educationRadioButtons = document.querySelectorAll('input[name="education"]');
-
-
-
+// Initialize data array
 let data = [];
 
-
+// Function to create data object
 function createData() {
     const dataObject = {
         name: nameInput.value,
@@ -29,91 +312,13 @@ function createData() {
         address: addressInput.value,
         gender: genderSelect.value,
         occupation: occupationInput.value,
+        transport: getSelectedTransport(),
+        education: getSelectedEducation(),
     };
     return dataObject;
 }
 
-submitBtn.addEventListener('click', () => {
-    const dataObject = createData();
-    data.push(dataObject);
-    displayData(dataObject);
-    popup.style.display = 'none';
-});
-
-function displayData(dataObject) {
-    const popupName = document.getElementById('popupName');
-    const popupEmail = document.getElementById('popupEmail');
-    const popupPhone = document.getElementById('popupPhone');
-    const popupAddress = document.getElementById('popupAddress');
-    const popupGender = document.getElementById('popupGender');
-    const popupOccupation = document.getElementById('popupOccupation');
-
-
-
-    popupName.textContent = dataObject.name;
-    popupEmail.textContent = dataObject.email;
-    popupPhone.textContent = dataObject.phone;
-    popupAddress.textContent = dataObject.address;
-    popupGender.textContent = dataObject.gender;
-    popupOccupation.textContent = dataObject.occupation;
-}
-editBtn.addEventListener('click', () => {
-    const dataObject = data[data.length - 1];
-    editData(dataObject);
-    popup.style.display = 'none';
-});
-
-closePopupBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
-});
-function editData(dataObject) {
-    nameInput.value = dataObject.name;
-    emailInput.value = dataObject.email;
-    phoneInput.value = dataObject.phone;
-    addressInput.value = dataObject.address;
-    genderSelect.value = dataObject.gender;
-    occupationInput.value = dataObject.occupation;
-}
-
-function deleteData(dataObject) {
-    const index = data.indexOf(dataObject);
-    if (index !== -1) {
-        data.splice(index, 1);
-    }
-    popup.style.display = 'none';
-}
-
-deleteBtn.addEventListener('click', () => {
-    const dataObject = data[data.length - 1];
-    deleteData(dataObject);
-});
-
-closePopupBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
-});
-
-
-function getSelectedTransport() {
-    let selectedTransport = "";
-    transportRadioButtons.forEach((radioButton) => {
-        if (radioButton.checked) {
-            selectedTransport = radioButton.value;
-        }
-    });
-    return selectedTransport;
-}
-
-function getSelectedEducation() {
-    let selectedEducation = '';
-    educationRadioButtons.forEach((radioButton) => {
-        if (radioButton.checked) {
-            selectedEducation = radioButton.value;
-        }
-    });
-    return selectedEducation;
-}
-
-
+// Function to get selected transport value
 function getSelectedTransport() {
     for (let i = 0; i < transportRadioButtons.length; i++) {
         if (transportRadioButtons[i].checked) {
@@ -122,7 +327,7 @@ function getSelectedTransport() {
     }
 }
 
-// Function to get the selected education value
+// Function to get selected education value
 function getSelectedEducation() {
     for (let i = 0; i < educationRadioButtons.length; i++) {
         if (educationRadioButtons[i].checked) {
@@ -131,83 +336,169 @@ function getSelectedEducation() {
     }
 }
 
-function displayValues() {
-    document.getElementById('popupTransport').textContent = getSelectedTransport();
-    document.getElementById('popupEducation').textContent = getSelectedEducation();
-
-
-    let popupTransportRadioButtons = document.querySelectorAll('.popup-transport input[name="popupTransport"]');
-    let popupEducationRadioButtons = document.querySelectorAll('.popup-education input[name="popupEducation"]');
-
-    for (let i = 0; i < popupTransportRadioButtons.length; i++) {
-        if (popupTransportRadioButtons[i].value === getSelectedTransport()) {
-            popupTransportRadioButtons[i].checked = true;
-        }
-    }
-
-    for (let i = 0; i < popupEducationRadioButtons.length; i++) {
-        if (popupEducationRadioButtons[i].value === getSelectedEducation()) {
-            popupEducationRadioButtons[i].checked = true;
-        }
-    }
-}
-
-// Function to create a new popup
+// Function to create new popup
 function createNewPopup(dataObject) {
-    const popupContainer = document.getElementById('popup-container');
     const newPopup = document.createElement('div');
     newPopup.classList.add('popup');
-    newPopup.style.display = 'block'; // Show the popup by default
+    newPopup.style.display = 'block';
     newPopup.innerHTML = `
-        
         <p>Name: <span id="popupName">${dataObject.name}</span></p>
         <p>Email: <span id="popupEmail">${dataObject.email}</span></p>
         <p>Phone: <span id="popupPhone">${dataObject.phone}</span></p>
         <p>Address: <span id="popupAddress">${dataObject.address}</span></p>
         <p>Gender: <span id="popupGender">${dataObject.gender}</span></p>
         <p>Occupation: <span id="popupOccupation">${dataObject.occupation}</span></p>
-        <p>Transport: <span id="popupTransport"></span></p>
-        <p>Education: <span id="popupEducation"></span></p>
-      
-        <button id="editBtn"><i class="fa-solid fa-pen-to-square"></i></button>
+        <p>Transport: <span id="popupTransport">${dataObject.transport}</span></p>
+        <p>Education: <span id="popupEducation">${dataObject.education}</span></p>
+         <button id="editBtn"><i class="fa-solid fa-pen-to-square"></i></button>
         <button id="deleteBtn"><i class="fa-solid fa-trash"></i></button>
     `;
     popupContainer.appendChild(newPopup);
 
-
-
-    const newPopupTransport = newPopup.querySelector('#popupTransport');
-    const newPopupEducation = newPopup.querySelector('#popupEducation');
-    const newEditBtn = newPopup.querySelector('#editBtn');
     const newDeleteBtn = newPopup.querySelector('#deleteBtn');
-
-
-    newEditBtn.addEventListener('click', () => {
-        editData(dataObject);
-        newPopup.style.display = 'none';
-    });
     newDeleteBtn.addEventListener('click', () => {
         deleteData(dataObject);
         newPopup.style.display = 'none';
     });
 
-    // Display the transport and education values
-    newPopupTransport.textContent = getSelectedTransport();
-    newPopupEducation.textContent = getSelectedEducation();
+    const editBtn = newPopup.querySelector('#editBtn');
 
-    // Position the new popup beside the old one
-    const previousPopup = popupContainer.children[popupContainer.children.length - 2];
-    if (previousPopup) {
-        newPopup.style.top = previousPopup.offsetTop + 'px';
-        newPopup.style.left = (previousPopup.offsetLeft + previousPopup.offsetWidth) + 'px';
+
+    editBtn.addEventListener('click', () => {
+        editPopup(dataObject);
+    });
+}
+// Function to edit popup
+function editPopup(dataObject) {
+    // Populate input fields with data
+    nameInput.value = dataObject.name;
+    emailInput.value = dataObject.email;
+    phoneInput.value = dataObject.phone;
+    addressInput.value = dataObject.address;
+    genderSelect.value = dataObject.gender;
+    occupationInput.value = dataObject.occupation;
+
+    // Check the corresponding transport radio button
+    transportRadioButtons.forEach((radioButton) => {
+        if (radioButton.value === dataObject.transport) {
+            radioButton.checked = true;
+        }
+    });
+
+    // Check the corresponding education radio button
+    educationRadioButtons.forEach((radioButton) => {
+        if (radioButton.value === dataObject.education) {
+            radioButton.checked = true;
+        }
+    });
+
+    // Scroll to the basic form
+    const formContainer = document.querySelector('.container');
+    formContainer.scrollIntoView({ behavior: 'smooth' });
+
+    // Delete the old card
+    deleteData(dataObject);
+
+
+
+}
+
+
+function deleteData(dataObject) {
+    const storedData = retrieveDataFromLocalStorage();
+    const index = storedData.findIndex((data) => {
+        return (
+            data.name === dataObject.name ||
+            data.email === dataObject.email ||
+            data.phone === dataObject.phone ||
+            data.address === dataObject.address ||
+            data.gender === dataObject.gender ||
+            data.occupation === dataObject.occupation
+        );
+    });
+    if (index !== -1) {
+        storedData.splice(index, 1);
+        storeDataInLocalStorage(storedData);
     }
 }
 
-// Update the submit button event listener to create a new popup
+// Function to store data in local storage
+function storeDataInLocalStorage(data) {
+    localStorage.setItem('data', JSON.stringify(data));
+}
+
+// Function to retrieve data from local storage
+function retrieveDataFromLocalStorage() {
+    const storedData = localStorage.getItem('data');
+    if (storedData) {
+        return JSON.parse(storedData);
+    } else {
+        return [];
+    }
+}
+
+// Function to clear input fields
+function clearInputFields() {
+    nameInput.value = '';
+    emailInput.value = '';
+    phoneInput.value = '';
+    addressInput.value = '';
+    genderSelect.value = '';
+    occupationInput.value = '';
+    transportRadioButtons.forEach((radioButton) => {
+        radioButton.checked = false;
+    });
+    educationRadioButtons.forEach((radioButton) => {
+        radioButton.checked = false;
+    });
+}
+
+// Event listeners
 submitBtn.addEventListener('click', () => {
     const dataObject = createData();
     data.push(dataObject);
+    storeDataInLocalStorage(data);
     createNewPopup(dataObject);
+    clearInputFields();
 });
-let submit = document.getElementById('submit')
-submit.addEventListener('click', displayValues);
+
+searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    if (searchTerm) {
+        const storedData = retrieveDataFromLocalStorage();
+        const filteredData = storedData.filter((dataObject) => {
+            if (dataObject) {
+                return (
+                    dataObject.name?.toLowerCase().includes(searchTerm) ||
+                    dataObject.email?.toLowerCase().includes(searchTerm) ||
+                    dataObject.phone?.toLowerCase().includes(searchTerm) ||
+                    dataObject.address?.toLowerCase().includes(searchTerm) ||
+                    dataObject.gender?.toLowerCase().includes(searchTerm) ||
+                    dataObject.occupation?.toLowerCase().includes(searchTerm) ||
+                    dataObject.transport?.toLowerCase().includes(searchTerm) ||
+                    dataObject.education?.toLowerCase().includes(searchTerm)
+                );
+            } else {
+                return false;
+            }
+        });
+        popupContainer.innerHTML = '';
+        filteredData.forEach((dataObject) => {
+            createNewPopup(dataObject);
+        });
+    } else {
+        const storedData = retrieveDataFromLocalStorage();
+        popupContainer.innerHTML = '';
+        storedData.forEach((dataObject) => {
+            createNewPopup(dataObject);
+        });
+    }
+});
+
+// Retrieve data from local storage when the page loads
+const storedData = retrieveDataFromLocalStorage();
+if (storedData.length > 0) {
+    storedData.forEach((data) => {
+        createNewPopup(data);
+    });
+}
