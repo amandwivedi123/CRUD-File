@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Popup App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Basic Form</h1>
+        <div class="searchSection"><input type="search" id="search-input" placeholder="Search...">
+            <!-- <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button> -->
+        </div>
+        <input type="text" id="name" placeholder="Name">
+        <input type="email" id="email" placeholder="Email">
+        <input type="text" id="phone" placeholder="Phone">
+        <input type="text" id="address" placeholder="Address">
+        <select id="gender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <input type="text" id="occupation" placeholder="Occupation" required>
+        <div class="ticks">
+            <div class="common" id="transport">
+                <p>Transport :</p>
+                <input type="checkbox" id="bike" name="transport" value="Bike">
+                <label for="bike">Bike</label>
+
+                <input type="checkbox" id="car" name="transport" value="Car">
+                <label for="car">Car</label>
+            </div>
+            <div class="common" id="education">
+                <p>Education :</p>
+                <input type="radio" id="bachelors" class="pers-det" name="education" value="Bachelors">
+                <label for="bachelors">Bachelors</label>
+
+                <input type="radio" id="masters" class="pers-det" name="education" value="Masters">
+                <label for="masters">Masters</label>
+
+                <input type="radio" id="phd" class="pers-det" name="education" value="PhD">
+                <label for="phd">PhD</label>
+            </div>
+        </div>
+
+        <button id="submit">Submit <i class="fa-solid fa-arrow-right"></i></button>
+
+        <div class="parent-popup">
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close" id="closePopup">&times;</span>
+                    <h2>Details</h2>
+                    <p><b>Name:</b> <span id="popupName"></span></p>
+                    <p><b>Email:</b> <span id="popupEmail"></span></p>
+                    <p><b>Phone:</b> <span id="popupPhone"></span></p>
+                    <p><b>Address:</b> <span id="popupAddress"></span></p>
+                    <p><b>Gender:</b> <span id="popupGender"></span></p>
+                    <p><b>Occupation:</b> <span id="popupOccupation"></span></p>
+                    <p><b>Transport:</b> <span id="popupTransport"></span></p>
+                    <p><b>Education:</b> <span id="popupEducation"></span></p>
+
+                    <button id="editBtn"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button id="deleteBtn"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="popup-area">
+        <div id="popup-container"></div>
+    </div>
+
+    <div class="pagination" id="pagination">
+        <a href="/" id="prev">Previous</a>
+        <a href="/" class="page-link active" data-page="1">1 </a>
+        <a href="/" class="page-link" data-page="2">2</a>
+
+        <a href="" id="next">Next</a>
+    </div>
+
+    <div class="card-container" id="card-container"></div>
+
+
+
+    <!-- // Get elements
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const addressInput = document.getElementById('address');
+    const genderSelect = document.getElementById('gender');
+    const occupationInput = document.getElementById('occupation');
+    const transportRadioButtons = document.querySelectorAll('input[name="transport"]');
+    const educationRadioButtons = document.querySelectorAll('input[name="education"]');
+    const submitBtn = document.getElementById('submit');
+    const popupContainer = document.getElementById('popup-container');
+    const searchInput = document.getElementById('search-input');
+    
+    // Initialize data array
+    let data = [];
+    
+    // Function to create data object
+    function createData() {
+        const dataObject = {
+            name: nameInput.value,
+            email: emailInput.value,
+            phone: phoneInput.value,
+            address: addressInput.value,
+            gender: genderSelect.value,
+            occupation: occupationInput.value,
+            transport: getSelectedTransport(),
+            education: getSelectedEducation(),
+        };
+        return dataObject;
+    }
+    
+    // Function to get selected transport value
+    function getSelectedTransport() {
+        for (let i = 0; i < transportRadioButtons.length; i++) {
+            if (transportRadioButtons[i].checked) {
+                return transportRadioButtons[i].value;
+            }
+        }
+    }
+    
+    // Function to get selected education value
+    function getSelectedEducation() {
+        for (let i = 0; i < educationRadioButtons.length; i++) {
+            if (educationRadioButtons[i].checked) {
+                return educationRadioButtons[i].value;
+            }
+        }
+    }
+    
+    // Function to create new popup
+    function createNewPopup(dataObject) {
+        const newPopup = document.createElement('div');
+        newPopup.classList.add('popup');
+        newPopup.style.display = 'block';
+        newPopup.innerHTML = `
+            <p>Name: <span id="popupName">${dataObject.name}</span></p>
+            <p>Email: <span id="popupEmail">${dataObject.email}</span></p>
+            <p>Phone: <span id="popupPhone">${dataObject.phone}</span></p>
+            <p>Address: <span id="popupAddress">${dataObject.address}</span></p>
+            <p>Gender: <span id="popupGender">${dataObject.gender}</span></p>
+            <p>Occupation: <span id="popupOccupation">${dataObject.occupation}</span></p>
+            <p>Transport: <span id="popupTransport">${dataObject.transport}</span></p>
+            <p>Education: <span id="popupEducation">${dataObject.education}</span></p>
+             <button id="editBtn"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button id="deleteBtn"><i class="fa-solid fa-trash"></i></button>
+        `;
+        popupContainer.appendChild(newPopup);
+    
+        const newDeleteBtn = newPopup.querySelector('#deleteBtn');
+        newDeleteBtn.addEventListener('click', () => {
+            deleteData(dataObject);
+            newPopup.style.display = 'none';
+        });
+    
+        const editBtn = newPopup.querySelector('#editBtn');
+    
+    
+        editBtn.addEventListener('click', () => {
+            editPopup(dataObject);
+        });
+    }
+    // Function to edit popup
+    function editPopup(dataObject) {
+        // Populate input fields with data
+        nameInput.value = dataObject.name;
+        emailInput.value = dataObject.email;
+        phoneInput.value = dataObject.phone;
+        addressInput.value = dataObject.address;
+        genderSelect.value = dataObject.gender;
+        occupationInput.value = dataObject.occupation;
+    
+        // Check the corresponding transport radio button
+        transportRadioButtons.forEach((radioButton) => {
+            if (radioButton.value === dataObject.transport) {
+                radioButton.checked = true;
+            }
+        });
+    
+        // Check the corresponding education radio button
+        educationRadioButtons.forEach((radioButton) => {
+            if (radioButton.value === dataObject.education) {
+                radioButton.checked = true;
+            }
+        });
+    
+        // Scroll to the basic form
+        const formContainer = document.querySelector('.container');
+        formContainer.scrollIntoView({ behavior: 'smooth' });
+    
+        // Delete the old card
+        deleteData(dataObject);
+    
+    
+    
+    }
+    
+    
+    function deleteData(dataObject) {
+        const storedData = retrieveDataFromLocalStorage();
+        const index = storedData.findIndex((data) => {
+            return (
+                data.name === dataObject.name ||
+                data.email === dataObject.email ||
+                data.phone === dataObject.phone ||
+                data.address === dataObject.address ||
+                data.gender === dataObject.gender ||
+                data.occupation === dataObject.occupation
+            );
+        });
+        if (index !== -1) {
+            storedData.splice(index, 1);
+            storeDataInLocalStorage(storedData);
+        }
+    }
+    
+    // Function to store data in local storage
+    function storeDataInLocalStorage(data) {
+        localStorage.setItem('data', JSON.stringify(data));
+    }
+    
+    // Function to retrieve data from local storage
+    function retrieveDataFromLocalStorage() {
+        const storedData = localStorage.getItem('data');
+        if (storedData) {
+            return JSON.parse(storedData);
+        } else {
+            return [];
+        }
+    }
+    
+    // Function to clear input fields
+    function clearInputFields() {
+        nameInput.value = '';
+        emailInput.value = '';
+        phoneInput.value = '';
+        addressInput.value = '';
+        genderSelect.value = '';
+        occupationInput.value = '';
+        transportRadioButtons.forEach((radioButton) => {
+            radioButton.checked = false;
+        });
+        educationRadioButtons.forEach((radioButton) => {
+            radioButton.checked = false;
+        });
+    }
+    
+    // Event listeners
+    submitBtn.addEventListener('click', () => {
+        const dataObject = createData();
+        data.push(dataObject);
+        storeDataInLocalStorage(data);
+        createNewPopup(dataObject);
+        clearInputFields();
+    });
+    
+    searchInput.addEventListener('input', () => {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        if (searchTerm) {
+            const storedData = retrieveDataFromLocalStorage();
+            const filteredData = storedData.filter((dataObject) => {
+                if (dataObject) {
+                    return (
+                        dataObject.name?.toLowerCase().includes(searchTerm) ||
+                        dataObject.email?.toLowerCase().includes(searchTerm) ||
+                        dataObject.phone?.toLowerCase().includes(searchTerm) ||
+                        dataObject.address?.toLowerCase().includes(searchTerm) ||
+                        dataObject.gender?.toLowerCase().includes(searchTerm) ||
+                        dataObject.occupation?.toLowerCase().includes(searchTerm) ||
+                        dataObject.transport?.toLowerCase().includes(searchTerm) ||
+                        dataObject.education?.toLowerCase().includes(searchTerm)
+                    );
+                } else {
+                    return false;
+                }
+            });
+            popupContainer.innerHTML = '';
+            filteredData.forEach((dataObject) => {
+                createNewPopup(dataObject);
+            });
+        } else {
+            const storedData = retrieveDataFromLocalStorage();
+            popupContainer.innerHTML = '';
+            storedData.forEach((dataObject) => {
+                createNewPopup(dataObject);
+            });
+        }
+    });
+    
+    // Retrieve data from local storage when the page loads
+    const storedData = retrieveDataFromLocalStorage();
+    if (storedData.length > 0) {
+        storedData.forEach((data) => {
+            createNewPopup(data);
+        });
+    }
+     -->
+
+    <script src="script.js"></script>
+</body>
+
+</html>
