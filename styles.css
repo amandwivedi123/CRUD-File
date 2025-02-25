@@ -239,6 +239,7 @@ button:hover {
   margin-bottom: 10px;
 }
 .pagination {
+  width: 100%;
   text-align: center;
   margin-top: 2rem;
   display: flex;
@@ -247,21 +248,41 @@ button:hover {
 }
 
 .pagination a {
-  color: #007bff;
-  padding: 8px 16px;
+  color: #060707;
+  padding: 3px 3px;
   text-decoration: none;
-  border: 1px solid #007bff;
+  /* border: 1px solid #007bff; */
   margin: 0 5px;
   border-radius: 4px;
+  transition: all 0.15s ease-in-out;
 }
 
 .pagination a:hover {
-  background-color: #225183;
+  background-color: #67175854;
   color: white;
 }
 
 .pagination .active {
   /* background-color: #007bff; */
   color: white;
-  color: #225183;
+}
+
+.active {
+  background-color: blue;
+  color: white;
+}
+
+.page-link {
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.page-link.hover {
+  background-color: rgba(100, 33, 97, 0.34);
+}
+.page-link.active {
+  background-color: rgb(208, 0, 255);
+  color: white;
 }

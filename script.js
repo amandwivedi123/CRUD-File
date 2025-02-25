@@ -38,11 +38,13 @@ function createData() {
 
 // Function to get selected transport value
 function getSelectedTransport() {
-    for (let i = 0; i < transportRadioButtons.length; i++) {
-        if (transportRadioButtons[i].checked) {
-            return transportRadioButtons[i].value;
+    const selectedValues = [];
+    transportRadioButtons.forEach((radioButton) => {
+        if (radioButton.checked) {
+            selectedValues.push(radioButton.value);
         }
-    }
+    });
+    return selectedValues.join(', ');
 }
 
 // Function to get selected education value
@@ -152,7 +154,6 @@ function retrieveDataFromLocalStorage() {
     }
 }
 
-// Function to clear input fields
 function clearInputFields() {
     nameInput.value = '';
     emailInput.value = '';
@@ -168,7 +169,6 @@ function clearInputFields() {
     });
 }
 
-// Function to display popups based on current page
 function displayPopups() {
     const storedData = retrieveDataFromLocalStorage();
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -178,33 +178,38 @@ function displayPopups() {
     paginatedData.forEach((dataObject) => {
         createNewPopup(dataObject);
     });
+    const paginationContainer = document.getElementById('pagination');
+    popupContainer.parentNode.insertBefore(paginationContainer, popupContainer.nextSibling);
 }
 
-// Function to update pagination buttons
 function updatePaginationButtons() {
     const storedData = retrieveDataFromLocalStorage();
     const totalPages = Math.ceil(storedData.length / itemsPerPage);
-    pageLinks.forEach((link) => {
-        link.style.display = 'none';
-    });
+    pagination.innerHTML = '';
+    pagination.appendChild(prevBtn);
     for (let i = 1; i <= totalPages; i++) {
-        const link = document.querySelector(`.page-link[data-page="${i}"]`);
-        if (link) {
-            link.style.display = 'block';
-        } else {
-            const newLink = document.createElement('a');
-            newLink.classList.add('page-link');
-            newLink.href = '#';
-            newLink.dataset.page = i;
-            newLink.textContent = i;
-            pagination.appendChild(newLink);
-        }
+        const link = document.createElement('a');
+        link.classList.add('page-link');
+        link.href = '#';
+        link.dataset.page = i;
+        link.textContent = i;
+        pagination.appendChild(link);
     }
+    pagination.appendChild(nextBtn);
     const currentPageLink = document.querySelector(`.page-link[data-page="${currentPage}"]`);
-    currentPageLink.classList.add('active');
+    if (currentPageLink) {
+        currentPageLink.classList.add('active');
+    }
+    let pageLinks = document.querySelectorAll('.page-link');
+    pageLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const newPage = parseInt(link.dataset.page);
+            changePage(newPage);
+        });
+    });
 }
 
-// Event listeners
 submitBtn.addEventListener('click', () => {
     const dataObject = createData();
     data.push(dataObject);
@@ -255,8 +260,8 @@ nextBtn.addEventListener('click', () => {
     const storedData = retrieveDataFromLocalStorage();
     const totalPages = Math.ceil(storedData.length / itemsPerPage);
     if (currentPage < totalPages) {
-        currentPage++;
-        displayPopups();
+        currentPage = currentPage + 1;
+        displayPopups();4
         updatePaginationButtons();
     }
 });
@@ -276,10 +281,10 @@ prevBtn.addEventListener('click', (e) => {
         currentPage--;
         displayPopups();
         updatePaginationButtons();
-        const previousPageLink = document.querySelector(`.page-link[data-page="${currentPage}"]`);
+        const previousPageLink = document.querySelector('.pagination a');
         previousPageLink.classList.add('active');
         const previousPageLinkSibling = document.querySelector(`.page-link[data-page="${currentPage + 1}"]`);
-        previousPageLinkSibling.classList.remove('active');
+        previousPageLink.classList.remove(previousPageLinkSibling);
     }
 });
 
@@ -289,10 +294,9 @@ nextBtn.addEventListener('click', (e) => {
         currentPage++;
         displayPopups();
         updatePaginationButtons();
-        const previousPageLink = document.querySelector(`.page-link[data-page="${currentPage}"]`);
+        const previousPageLink = document.querySelector('.pagination a');
         previousPageLink.classList.add('active');
-        const previousPageLinkSibling = document.querySelector(`.page-link[data-page="${currentPage + 1}"]`);
-        previousPageLinkSibling.classList.remove('active');
+        previousPageLink.classList.remove('active');
     }
 });
 function changePage(newPage) {
@@ -311,7 +315,6 @@ function changePage(newPage) {
 prevBtn.addEventListener('click', () => {
     changePage(currentPage - 1);
 });
-// Retrieve data from local storage when the page loads
 const storedData = retrieveDataFromLocalStorage();
 if (storedData.length > 0) {
     data = storedData;
